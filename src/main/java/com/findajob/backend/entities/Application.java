@@ -23,32 +23,24 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Vacant {
+public class Application { //Solicitud
+    
     @Id
     @Column(nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(nullable = false)
+    private User user;
 
-    @Column(nullable = false, unique = true)
-    private String name;
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(nullable = false)
+    private Vacant vacant;
 
     @Column(nullable = false)
     private Date date;
 
     @Column(nullable = false)
-    private String descripcion;
-
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(nullable = false)
-    private Categories category;
-
-    @Column(nullable = false)
-    private String image;
-
-    @Column(nullable = false)
-    private double salary;
-
-    @Column(nullable = false)
-    private boolean enable;
-
+    private String comment;
 }
